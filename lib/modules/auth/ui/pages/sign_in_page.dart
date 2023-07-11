@@ -1,4 +1,5 @@
-import 'package:firebase_flutter_fujitsu/modules/auth/data/services/firestore_service_users.dart';
+import 'package:firebase_flutter_fujitsu/modules/auth/cubit/auth_cubit.dart';
+import 'package:firebase_flutter_fujitsu/modules/auth/data/services/auth_firebase_user.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatelessWidget {
@@ -7,10 +8,25 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        FirestoreDatabaseUsers().editUser(
-          desc: 'holaaa Mundoooooo',
-          uuid: '1222ddddaaaaa2',
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+        // await FirestoreDatabaseUsers().createNewUser(
+        //   uidUser: '123456',
+        //   nameUser: 'Jose',
+        // );
+        // final newUser =
+        //     await FirestoreDatabaseUsers().getUserById(uid: '123456');
+
+        // print(newUser!.name);
+
+        // final response =
+        //     await FirebaseAuthRepository().singnUpWithEmailAndPassword(
+        //   email: 'jose@jose.com',
+        //   password: '123456',
+        // );
+        // print(response);
+        AuthCubit().signInWithEmailAndPassword(
+          email: 'jose2@jose.com',
+          password: '123456',
         );
       }),
       body: Center(

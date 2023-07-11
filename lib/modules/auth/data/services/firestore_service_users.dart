@@ -4,16 +4,18 @@ import 'package:firebase_flutter_fujitsu/modules/auth/data/models/user_model.dar
 class FirestoreDatabaseUsers {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String _collection = "USERS";
-  Future<void> createNewUser({
-    required String uidUser,
-    required String nameUser,
-  }) async {
+  Future<void> createNewUser(
+      {required String uidUser,
+      required String nameUser,
+      required String email,
+      required bool isAdmin}) async {
     try {
       await _firestore.collection(_collection).doc(uidUser).set(
         {
           "uid": uidUser,
           "name": nameUser,
-          "isAdmin": false,
+          "email": email,
+          "isAdmin": isAdmin,
         },
         SetOptions(merge: true),
       );
