@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_flutter_fujitsu/core/config/firebase_options.dart';
+import 'package:firebase_flutter_fujitsu/modules/auth/cubits/user_cubit/user_cubit.dart';
 import 'package:firebase_flutter_fujitsu/modules/auth/ui/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +18,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SignInPage(),
+    return BlocProvider<UserCubit>(
+      create: (context) => UserCubit(),
+      child: const MaterialApp(
+        home: SignInPage(),
+      ),
     );
   }
 }

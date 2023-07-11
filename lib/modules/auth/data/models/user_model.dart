@@ -8,12 +8,14 @@ class UserModel {
   final String uid;
   String? name;
   final String email;
+  String? errorMessage;
   final bool isAdmin;
 
   UserModel({
     required this.uid,
     required this.email,
     this.isAdmin = false,
+    this.errorMessage = '',
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

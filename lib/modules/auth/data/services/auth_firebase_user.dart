@@ -24,4 +24,33 @@ class FirebaseAuthRepository {
       return null;
     }
   }
+
+  Future<UserModel?> singnInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final myFirebaseUSer = await _firebaseAuth
+          .signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          )
+          .then((UserCredential user) => UserModel.fromFirebaseUser(user));
+      return myFirebaseUSer;
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      return UserModel(
+        uid: '',
+        email: email,
+        errorMessage: e.message,
+      );
+    } catch (e) {
+      print(e);
+      return UserModel(
+        uid: '',
+        email: email,
+        errorMessage: 'Error no controlado',
+      );
+    }
+  }
 }

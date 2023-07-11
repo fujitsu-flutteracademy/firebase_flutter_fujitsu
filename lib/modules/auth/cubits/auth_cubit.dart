@@ -5,7 +5,7 @@ import 'package:firebase_flutter_fujitsu/modules/auth/data/services/firestore_se
 class AuthCubit {
   FirebaseAuthRepository firebaseAuthRepository = FirebaseAuthRepository();
   FirestoreDatabaseUsers firestoreDatabaseUsers = FirestoreDatabaseUsers();
-  Future<UserModel> signInWithEmailAndPassword(
+  Future<UserModel> signUpWithEmailAndPassword(
       {required String email, required String password}) async {
     final newUser = await firebaseAuthRepository.singnUpWithEmailAndPassword(
       email: email,
