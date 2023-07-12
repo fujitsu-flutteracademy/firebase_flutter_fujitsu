@@ -1,5 +1,6 @@
 import 'package:firebase_flutter_fujitsu/modules/auth/ui/pages/sign_in_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/chat/ui/pages/chat_page.dart';
+import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/bicicletas_form_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/bicicletas_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/camisetas_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/ecomerce_page.dart';
@@ -13,6 +14,7 @@ enum AppRoutes {
   ecomerce,
   camisetas,
   bicicletas,
+  formBicicletas,
   chat,
 }
 
@@ -27,27 +29,37 @@ final goRouter = GoRouter(
       },
       routes: [
         GoRoute(
-            path: 'ecomerce',
-            name: AppRoutes.ecomerce.name,
-            builder: (context, state) {
-              return EcomercePage();
-            },
-            routes: [
-              GoRoute(
-                path: 'camisetas',
-                name: AppRoutes.camisetas.name,
-                builder: (context, state) {
-                  return CamisetasPage();
-                },
-              ),
-              GoRoute(
-                path: 'bicicletas',
-                name: AppRoutes.bicicletas.name,
-                builder: (context, state) {
-                  return BicicletasPage();
-                },
-              ),
-            ]),
+          path: 'ecomerce',
+          name: AppRoutes.ecomerce.name,
+          builder: (context, state) {
+            return EcomercePage();
+          },
+          routes: [
+            GoRoute(
+              path: 'camisetas',
+              name: AppRoutes.camisetas.name,
+              builder: (context, state) {
+                return CamisetasPage();
+              },
+            ),
+            GoRoute(
+              path: 'bicicletas',
+              name: AppRoutes.bicicletas.name,
+              builder: (context, state) {
+                return BicicletasPage();
+              },
+              routes: [
+                GoRoute(
+                  path: 'formBicicletas',
+                  name: AppRoutes.formBicicletas.name,
+                  builder: (context, state) {
+                    return BicicletasFormPage();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
         GoRoute(
             path: 'chat',
             name: AppRoutes.chat.name,
