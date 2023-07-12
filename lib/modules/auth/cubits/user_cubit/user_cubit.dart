@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_fujitsu/modules/auth/data/models/user_model.dart';
 import 'package:firebase_flutter_fujitsu/modules/auth/data/services/auth_firebase_user.dart';
 import 'package:firebase_flutter_fujitsu/modules/auth/data/services/firestore_service_users.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  UserCubit() : super(UserState.initial());
+  UserCubit() : super(UserState.initial()) {
+    findUserById();
+  }
 
   FirebaseAuthRepository firebaseAuthRepository = FirebaseAuthRepository();
   FirestoreDatabaseUsers firestoreDatabaseUsers = FirestoreDatabaseUsers();
@@ -58,5 +61,20 @@ class UserCubit extends Cubit<UserState> {
     }
 
     emit(state.copyWith(formUserState: FormUserState.initial));
+  }
+
+  Future<void> findUserById() async {
+    UserModel? myUser = await firestoreDatabaseUsers.getUserById(
+        uid: "fgCWwqR98gVoaQ799zinUuSNdkL2");
+
+    if (myUser != null) {
+      emit(
+        state.copyWith(
+          nombre: myUser.name ?? '',
+          uid: myUser.uid,
+          email: myUser.email,
+        ),
+      );
+    }
   }
 }
