@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_flutter_fujitsu/core/config/firebase_options.dart';
+import 'package:firebase_flutter_fujitsu/core/locator/locator.dart';
 import 'package:firebase_flutter_fujitsu/core/router/app_router.dart';
 import 'package:firebase_flutter_fujitsu/modules/auth/cubits/user_cubit/user_cubit.dart';
 import 'package:firebase_flutter_fujitsu/modules/auth/ui/pages/sign_in_page.dart';
@@ -11,6 +12,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  setupLocator();
   runApp(const MainApp());
 }
 

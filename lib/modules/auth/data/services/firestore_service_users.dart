@@ -34,6 +34,13 @@ class FirestoreDatabaseUsers {
     }
   }
 
+  // Future<List<UserModel>?> getUserById({required String uid}) async {
+  //   final querySnapshot = await _getUserByIdFirebase(uid: uid);
+  //   final users =
+  //       querySnapshot.docs.map((snapshot) => snapshot.data()).toList();
+  //   return users.isEmpty ? null : users; //.first;
+  // }
+
   Future<UserModel?> getUserById({required String uid}) async {
     final querySnapshot = await _getUserByIdFirebase(uid: uid);
     final users =

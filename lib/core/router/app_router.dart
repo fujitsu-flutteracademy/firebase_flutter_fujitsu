@@ -4,6 +4,7 @@ import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/bicicletas_fo
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/bicicletas_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/camisetas_page.dart';
 import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/pages/ecomerce_page.dart';
+import 'package:firebase_flutter_fujitsu/modules/ecomerce/ui/widgets/bike_description_widget.dart';
 import 'package:firebase_flutter_fujitsu/modules/home/ui/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +16,7 @@ enum AppRoutes {
   camisetas,
   bicicletas,
   formBicicletas,
+  desBicicleta,
   chat,
 }
 
@@ -54,6 +56,16 @@ final goRouter = GoRouter(
                   name: AppRoutes.formBicicletas.name,
                   builder: (context, state) {
                     return BicicletasFormPage();
+                  },
+                ),
+                GoRoute(
+                  path: 'descBicicleta',
+                  name: AppRoutes.desBicicleta.name,
+                  builder: (context, state) {
+                    return BikeDescriptionWidget(
+                      bikeModelObject:
+                          state.extra as BikeDescriptionWidgetObject,
+                    );
                   },
                 ),
               ],
