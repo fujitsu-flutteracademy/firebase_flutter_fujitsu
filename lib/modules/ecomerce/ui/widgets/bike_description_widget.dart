@@ -8,6 +8,7 @@ class BikeDescriptionWidgetObject {
   BikeDescriptionWidgetObject({this.bikeModel});
 }
 
+//TODO
 class BikeDescriptionWidget extends StatelessWidget {
   final BikeDescriptionWidgetObject bikeModelObject;
   const BikeDescriptionWidget({
